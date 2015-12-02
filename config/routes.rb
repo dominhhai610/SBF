@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'contact' => 'static_pages#contact'
   get 'login'   => 'static_pages#login'
   get 'signup'  => 'users#new'
+  get 'edit'    => 'users#edit'
 
 
   # Example of regular route:

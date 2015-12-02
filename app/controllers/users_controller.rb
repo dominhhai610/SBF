@@ -36,6 +36,7 @@ end
 
   # GET /users/1/edit
   def edit
+    @user = User.find(params[:id])        #get current user
   end
 
   # POST /users
@@ -45,6 +46,7 @@ end
 
     respond_to do |format|
       if @user.save
+         flash[:success] = "Welcome to the Sample App!"
          format.html { redirect_to @user, notice: 'User was successfully created.' }
          format.json { render :show, status: :created, location: @user }
          # redirect_to @user
@@ -59,8 +61,9 @@ end
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    @user = User.find(params[:id])
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update_attributes(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
