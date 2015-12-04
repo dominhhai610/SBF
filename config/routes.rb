@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'about'   => 'static_pages#about'
   get 'contact' => 'static_pages#contact'
   # get 'login'   => 'static_pages#login'
+  get 'users'   =>'users'
   get 'signup'  => 'users#new'
   get 'edit'    => 'users#edit'
   get 'login'   => 'session#new'
