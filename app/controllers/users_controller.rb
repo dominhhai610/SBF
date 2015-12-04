@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  # has_secure_password
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -83,6 +84,12 @@ end
     end
   end
 
+
+  # Returns true if the given token matches the digest.
+  def authenticated?(remember_token)
+    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -93,4 +100,5 @@ end
     def user_params
       params.require(:user).permit(:name, :password)
     end
+
 end

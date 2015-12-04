@@ -26,6 +26,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #grape
 gem 'grape'
 
+#password secure
+gem 'bcrypt-ruby'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
