@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   # has_secure_password
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, only: [:show, :edit, :update]
 
   # GET /users
   # GET /users.json
@@ -27,6 +28,7 @@ end
   # end
   def show
     # @user = User.find(:params[:id])
+
     @user = User.find(params[:id])
   end
 
@@ -96,6 +98,13 @@ end
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def require_login
+      if logged_in?
+      else
+        redirect_to root_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
