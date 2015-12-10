@@ -1,7 +1,12 @@
 <li id="micropot-<%= micropot.id %>">
-
-  <span class="content"><%= micropot.content %></span>
+    <span class="content">
+    <%= image_tag micropot.picture.url if micropot.picture? %>
+    <br>
+    <%= micropot.content %>
+  </span>
+  <br>
   <span class="timestamp">
+
     Posted <%= time_ago_in_words(micropot.created_at) %> ago.
     <% if current_user == micropot.user %>
       <%= link_to "delete", micropot, method: :delete,

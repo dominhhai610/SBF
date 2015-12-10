@@ -29,7 +29,11 @@ private
 	end 
 
   def correct_user
-      @micropot = current_user.micropots.find_by(id: params[:id])
-      redirect_to root_url if @micropot.nil?
-    end
+    @micropot = current_user.micropots.find_by(id: params[:id])
+    redirect_to root_url if @micropot.nil?
+  end
+
+  def micropot_params
+    params.require(:micropot).permit(:content, :picture)
+  end
 end

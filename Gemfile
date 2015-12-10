@@ -38,6 +38,12 @@ gem 'grape'
 #password secure
 gem 'bcrypt-ruby'
 
+
+#image
+gem 'carrierwave',             '0.10.0'		#uploader
+gem 'mini_magick',             '3.8.0'		#resize
+gem 'fog',                     '1.36.0'		#deploy in production
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
