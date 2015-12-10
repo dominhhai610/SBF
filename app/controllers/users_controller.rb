@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # has_secure_password
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_login, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -27,9 +27,13 @@ end
   #   end
   # end
   def show
-    # @user = User.find(:params[:id])
-
-    @user = User.find(params[:id])
+    # if User.where(:user_id => params[:id]) == nil
+    #    redirect_to root_path
+    # else
+        @user = User.find(params[:id])
+        @micropots = @user.micropots.paginate(page: params[:page])
+    # end
+    # @micropots = @user.micropots.paginate(page: params[:page])
   end
 
   # GET /users/new
@@ -97,7 +101,11 @@ end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      # if User.where(:user_id =>  ) == nil
+      #   redirect_to root_path
+      # else
+        @user = User.find(params[:id])
+      # end
     end
 
     def require_login

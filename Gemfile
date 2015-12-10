@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -25,6 +25,15 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 #grape
 gem 'grape'
+
+#seed 
+ gem 'faker'
+
+ #mysql
+ gem 'mysql'
+
+ #paginate
+ gem "will_paginate", "~> 3.0.4" 
 
 #password secure
 gem 'bcrypt-ruby'
