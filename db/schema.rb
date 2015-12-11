@@ -11,14 +11,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151210080507) do
+ActiveRecord::Schema.define(version: 20151211025358) do
+
+  create_table "like_models", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4
+    t.integer  "micropot_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "like_models", ["micropot_id"], name: "index_like_models_on_micropot_id", using: :btree
+
+  create_table "like_pros", force: :cascade do |t|
+    t.integer  "micropot_id", limit: 4
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "like_pros", ["micropot_id"], name: "index_like_pros_on_micropot_id", using: :btree
+  add_index "like_pros", ["user_id"], name: "index_like_pros_on_user_id", using: :btree
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "micropot_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "user_id",     limit: 4
+  end
+
+  add_index "likes", ["micropot_id"], name: "index_likes_on_micropot_id", using: :btree
 
   create_table "micropots", force: :cascade do |t|
     t.text     "content",    limit: 65535
     t.integer  "user_id",    limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.string   "picture",    limit: 255
+    t.integer  "likecount",  limit: 4,     default: 0
   end
 
   add_index "micropots", ["user_id", "created_at"], name: "index_micropots_on_user_id_and_created_at", using: :btree
@@ -31,5 +60,9 @@ ActiveRecord::Schema.define(version: 20151210080507) do
     t.datetime "updated_at",             null: false
   end
 
+  add_foreign_key "like_models", "micropots"
+  add_foreign_key "like_pros", "micropots"
+  add_foreign_key "like_pros", "users"
+  add_foreign_key "likes", "micropots"
   add_foreign_key "micropots", "users"
 end

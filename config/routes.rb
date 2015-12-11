@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :micropots
+  resources :like_pros
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -27,6 +28,9 @@ Rails.application.routes.draw do
   post 'login'   => 'session#create'
   # delete 'logout' => 'session#destroy'
   get 'logout' => 'session#destroy'
+
+  put 'like'    => 'like_pros#update'
+  put 'unlike'  => 'like_pros#update'
 
 
 end

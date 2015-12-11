@@ -3,6 +3,10 @@ module SessionHelper
 			session[:user_id] = user.id
 	end
 
+  def refering_user(referuser)
+      session[:user_refer] = referuser.id
+  end
+
 	# def logout
 	# 	session.delete(:user_id)
 	# 	@current
@@ -28,6 +32,12 @@ module SessionHelper
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
+
+
+  def getreferuser
+      @referuser ||= User.find_by(id: session[:referuser])
+  end
+
 
   # Returns true if the user is logged in, false otherwise.
   def logged_in?

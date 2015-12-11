@@ -20,7 +20,16 @@ class MicropotsController < ApplicationController
     redirect_to request.referrer || root_url
   end
 
+  def update
+      @micropot = Micropot.find(params[:id])
+      object = Like_pros.new(:micropot_id =>@micropot, :user_id =>@current_user)
+      object.save
+      redirect_to @current_user
+  end
 
+  def show
+
+  end
 
 
 private
@@ -36,4 +45,5 @@ private
   def micropot_params
     params.require(:micropot).permit(:content, :picture)
   end
+
 end

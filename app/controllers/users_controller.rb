@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
   # has_secure_password
+  include SessionHelper
+
   before_action :require_login, only: [:show, :edit, :update]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :setReferUser ,only: [:show,:update]
 
   # GET /users
   # GET /users.json
@@ -105,6 +108,7 @@ end
       #   redirect_to root_path
       # else
         @user = User.find(params[:id])
+        @referuser =@user
       # end
     end
 
@@ -119,5 +123,12 @@ end
     def user_params
       params.require(:user).permit(:name, :password)
     end
+
+    #current refering user
+    def setReferUser
+      @referuser = User.find(params[:id])
+      refering_user(@referuser)
+    end
+
 
 end

@@ -3,12 +3,20 @@
     <%= image_tag micropot.picture.url if micropot.picture? %>
     <br>
     <%= micropot.content %>
+
   </span>
   <br>
   <span class="timestamp">
 
     Posted <%= time_ago_in_words(micropot.created_at) %> ago.
-    <% if current_user == micropot.user %>
+    <% if !current_user.nil? %>
+    <br>
+       <%= micropot.like_pro.count %>
+        <% if micropot.checkliked(current_user.id,micropot.id) %>
+        <%= link_to "likes", like_path(:id => micropot.id ,:current_user => current_user.id ,:is_like => "1",:refer_user => getreferuser.id) ,method: :put %>
+        <% else %>
+        <%= link_to "unlike", unlike_path(:id => micropot.id ,:current_user => current_user.id,:is_like => "0",:refer_user => getreferuser.id ) ,method: :put %>
+        <% end %>
       <%= link_to "delete", micropot, method: :delete,
                                        data: { confirm: "You sure?" } %>
     <% end %>
