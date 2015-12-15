@@ -35,7 +35,7 @@ module SessionHelper
 
 
   def getreferuser
-      @referuser ||= User.find_by(id: session[:referuser])
+      @getreferuser ||= User.find_by(id: session[:user_refer])
   end
 
 

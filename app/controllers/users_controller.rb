@@ -35,6 +35,7 @@ end
     # else
         @user = User.find(params[:id])
         @micropots = @user.micropots.paginate(page: params[:page])
+        refering_user(@user)
     # end
     # @micropots = @user.micropots.paginate(page: params[:page])
   end
@@ -108,7 +109,7 @@ end
       #   redirect_to root_path
       # else
         @user = User.find(params[:id])
-        @referuser =@user
+        refering_user(@user)
       # end
     end
 
