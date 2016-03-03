@@ -1,6 +1,7 @@
 class Micropot < ActiveRecord::Base
   belongs_to :user
   has_many :like_pro
+  has_many :comment ,dependent: :destroy
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 140 }

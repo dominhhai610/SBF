@@ -13,6 +13,17 @@
 
 ActiveRecord::Schema.define(version: 20151211025358) do
 
+  create_table "comments", force: :cascade do |t|
+    t.text     "content",      limit: 65535
+    t.integer  "user_id",      limit: 4
+    t.integer  "micropots_id", limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "comments", ["micropots_id"], name: "index_comments_on_micropots_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
   create_table "like_models", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
     t.integer  "micropot_id", limit: 4
@@ -60,6 +71,7 @@ ActiveRecord::Schema.define(version: 20151211025358) do
     t.datetime "updated_at",             null: false
   end
 
+  add_foreign_key "comments", "users"
   add_foreign_key "like_models", "micropots"
   add_foreign_key "like_pros", "micropots"
   add_foreign_key "like_pros", "users"

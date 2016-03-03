@@ -56,6 +56,9 @@ gem 'fog',                     '1.36.0'		#deploy in production
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'ffaker', :git => 'https://github.com/EmmanuelOga/ffaker.git'
+  gem 'versionist'
+  gem 'rspec-rails'
 end
 
 group :development do

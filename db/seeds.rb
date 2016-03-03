@@ -11,3 +11,9 @@ users = User.order(:created_at).take(6)
   content = "aaaaaaaaaa"
   users.each { |user| user.micropots.create!(content: content) }
 end
+
+
+20.times do |n|
+  User.create!(name: FFaker::Name.name,
+                 )
+end
